@@ -25,7 +25,7 @@ arsort($scores);
 
 $keyCount = 0;
 foreach ($scores as $key => $value) {
-  if ($keyCount < 3) {
+  if ($keyCount < 5) {
     $decrypt = '';
 
     for ($i=0; $i < $inputLength; $i++) {
