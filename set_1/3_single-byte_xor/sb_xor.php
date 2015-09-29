@@ -11,7 +11,7 @@ for ($kv=0; $kv < 256; $kv++) {
   $charScore = 0;
   $plainText = "";
 
-  for ($i=0; $i < strlen($input); $i++) {
+  for ($i=0; $i < $inputLength; $i++) {
     $plainText .= $input{$i} ^ chr($kv);
   }
 
@@ -26,7 +26,12 @@ arsort($scores);
 $keyCount = 0;
 foreach ($scores as $key => $value) {
   if ($keyCount < 3) {
-    $decrypt = $input ^ str_repeat($key, $inputLength);
+    $decrypt = '';
+
+    for ($i=0; $i < $inputLength; $i++) {
+      $decrypt .= $input{$i} ^ $key;
+    }
+
     echo "'$key' (" . ord($key) . ") : " . $decrypt . "\n";
   } else {
     break;
