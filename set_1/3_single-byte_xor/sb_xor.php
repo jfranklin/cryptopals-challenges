@@ -6,14 +6,20 @@ $input = hex2bin("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a39
 $inputLength = strlen($input);
 $scores = [];
 
+function sb_xor($encryptedString, $xor_key) {
+  $decryptedString = '';
+
+  for ($i = 0; $i < strlen($encryptedString); $i++) {
+    $decryptedString .= $encryptedString{$i} ^ chr($xor_key);
+  }
+
+  return $decryptedString;
+}
 
 for ($kv=0; $kv < 256; $kv++) {
   $charScore = 0;
-  $plainText = "";
 
-  for ($i=0; $i < $inputLength; $i++) {
-    $plainText .= $input{$i} ^ chr($kv);
-  }
+  $plainText = sb_xor($input, $kv);
 
   $charScore = englishLetterWeight($plainText, 0.5);
 

@@ -84,8 +84,9 @@ function englishLetterWeight($textToScore, $characterPenalty = 0) {
     'z' => 0.074
   ];
 
-  for ($position=0; $position < strlen($textToScore); $position++) {
+  $characterScore = 0;
 
+  for ($position=0; $position < strlen($textToScore); $position++) {
     $character = $textToScore{$position};
 
     if (isset($englishLetterWeights[$character])) {
