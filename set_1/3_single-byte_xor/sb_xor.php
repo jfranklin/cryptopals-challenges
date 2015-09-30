@@ -10,7 +10,7 @@ function sb_xor($encryptedString, $xor_key) {
   $decryptedString = '';
 
   for ($i = 0; $i < strlen($encryptedString); $i++) {
-    $decryptedString .= $encryptedString{$i} ^ chr($xor_key);
+    $decryptedString .= $encryptedString{$i} ^ $xor_key;
   }
 
   return $decryptedString;
@@ -19,7 +19,7 @@ function sb_xor($encryptedString, $xor_key) {
 for ($kv=0; $kv < 256; $kv++) {
   $charScore = 0;
 
-  $plainText = sb_xor($input, $kv);
+  $plainText = sb_xor($input, chr($kv));
 
   $charScore = englishLetterWeight($plainText, 0.5);
 
@@ -32,11 +32,7 @@ arsort($scores);
 $keyCount = 0;
 foreach ($scores as $key => $value) {
   if ($keyCount < 5) {
-    $decrypt = '';
-
-    for ($i=0; $i < $inputLength; $i++) {
-      $decrypt .= $input{$i} ^ $key;
-    }
+    $decrypt = sb_xor($input, $key);
 
     echo "'$key' (" . ord($key) . ") : " . $decrypt . "\n";
   } else {
