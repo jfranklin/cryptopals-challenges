@@ -1,0 +1,17 @@
+The following code will encrypt the output of this code back into it's original form. Keeping this for later reference.
+
+
+<?php
+
+$input = "Cooking MC's like a pound of bacon";
+$inputLength = strlen($input);
+
+$plainText = "";
+
+for ($i=0; $i < $inputLength; $i++) {
+  $plainText .= $input{$i} ^ 'X';
+}
+
+echo bin2hex($plainText);
+
+?>
