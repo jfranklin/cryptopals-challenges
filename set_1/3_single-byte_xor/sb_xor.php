@@ -2,7 +2,11 @@
 
 require '../../functions/letterScore.php';
 
-$input = hex2bin("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
+if ($argc > 1) {
+  $input = hex2bin($argv[1]);
+} else {
+  $input = hex2bin("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
+}
 $inputLength = strlen($input);
 $scores = [];
 
