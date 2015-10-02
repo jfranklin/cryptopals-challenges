@@ -3,8 +3,8 @@
 
 Taken from https://en.wikipedia.org/wiki/Letter_frequency
 
-In English, the space is slightly more frequent than the top letter (e) and
-the non-alphabetic characters (digits, punctuation, etc.) collectively occupy
+In English, the space is slightly more frequent than the top letter (e) and 
+the non-alphabetic characters (digits, punctuation, etc.) collectively occupy 
 the fourth position (having already included the space) between t and a.
 
 e	12.702%
@@ -108,5 +108,4 @@ function englishLetterWeight($textToScore, $characterPenalty = 0) {
   return $characterScore;
 
 }
-
 ?>
