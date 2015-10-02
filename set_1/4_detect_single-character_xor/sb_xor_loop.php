@@ -1,6 +1,6 @@
 <?php
 
-require 'letterScore.php';
+require '../../functions/letterScore.php';
 
 if ($argc > 1) {
   $filename = $argv[1];
@@ -20,8 +20,8 @@ while(!feof($file)) {
 }
 fclose ($file);
 
-$linesKey = [];
-$linesScore = [];
+$linesKey   = [];  //store best scoring key for each line
+$linesScore = [];  //store best score for each line
 
 foreach ($lines as $lineNumber => $line) {
 
