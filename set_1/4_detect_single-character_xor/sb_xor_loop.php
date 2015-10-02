@@ -1,6 +1,6 @@
 <?php
 
-require '../../functions/letterScore.php';
+require_once '../../functions/singleByteXOR.php';
 
 if ($argc > 1) {
   $filename = $argv[1];
@@ -25,19 +25,7 @@ $linesScore = [];  //store best score for each line
 
 foreach ($lines as $lineNumber => $line) {
 
-  $input = hex2bin($line);
-  $inputLength = strlen($input);
-  $scores = [];
-
-  for ($kv=0; $kv < 256; $kv++) {
-    $charScore = 0;
-
-    $plainText = $input ^ str_repeat(chr($kv), $inputLength);
-    $charScore = englishLetterWeight($plainText, 5);
-
-    $scores[$kv] = $charScore;
-
-  }
+  $scores = findSingleByteXOR(hex2bin($line));
 
   arsort($scores);
 
@@ -61,8 +49,7 @@ printf("LINE KEY KEY#  SCORE       OUTPUT\n");
 foreach ($linesScore as $lineNumber => $lineScore) {
   //return the top scoring entries in the file
   if ($lineCount < 5) {
-    $lineLength = strlen($lines[$lineNumber]);
-    $decrypt = hex2bin($lines[$lineNumber]) ^ str_repeat(chr($linesKey[$lineNumber]), $lineLength);
+    $decrypt = singleByteXOR(hex2bin($lines[$lineNumber]), chr($linesKey[$lineNumber]));
     printf("#%1$'03u '%2$1c' (%2$'03u) %3$+09.3f : %4$1s\n",$lineNumber, $linesKey[$lineNumber], $linesScore[$lineNumber], $decrypt);
   }
 
