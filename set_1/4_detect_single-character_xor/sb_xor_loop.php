@@ -63,7 +63,6 @@ foreach ($linesScore as $lineNumber => $lineScore) {
   if ($lineCount < 5) {
     $lineLength = strlen($lines[$lineNumber]);
     $decrypt = hex2bin($lines[$lineNumber]) ^ str_repeat(chr($linesKey[$lineNumber]), $lineLength);
-//    printf("#%'03u '%1c' (%'03u) %4.4f : %s\n",$lineNumber, $linesKey[$lineNumber], $linesKey[$lineNumber], $linesScore[$lineNumber], $decrypt);
     printf("#%1$'03u '%2$1c' (%2$'03u) %3$+09.3f : %4$1s\n",$lineNumber, $linesKey[$lineNumber], $linesScore[$lineNumber], $decrypt);
   }
 
