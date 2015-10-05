@@ -20,8 +20,14 @@ if ($argc == 1) {
   }
 } elseif ($argc == 2) {
   $input  = $argv[1];
-  $output = hex2base64($input);
-  echo $output . "\n";
+
+  if (strlen($input) % 2 != 0) {
+    echo "Hex input must contain an even number of digits.\n";
+    exit(1);
+  } else {
+    $output = hex2base64($input);
+    echo $output . "\n";
+  }
 } else {
   echo "Single hex string only.\n";
 }
